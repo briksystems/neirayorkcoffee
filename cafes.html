@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<!--
+  NEIRA YORK COFFEE — cafes.html
+  Página completa del catálogo de cafés.
+  Usa sections/nav.js, sections/cafes.js, sections/contacto.js
+-->
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Nuestros Cafés | Neira York Coffee</title>
+  <meta name="description" content="Catálogo completo de cafés especiales Neira York. Más de 16 variedades del Eje Cafetero con despachos nacionales."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/global.css"/>
+  <style>
+    #loader{position:fixed;inset:0;background:#fff;z-index:9999;display:flex;align-items:center;justify-content:center;transition:opacity .5s}
+    #loader.done{opacity:0;pointer-events:none}
+    .ring{width:36px;height:36px;border:3px solid #EDE8E0;border-top-color:#C8102E;border-radius:50%;animation:spin .8s linear infinite}
+    @keyframes spin{to{transform:rotate(360deg)}}
+  </style>
+</head>
+<body>
+<div id="loader"><div class="ring"></div></div>
+
+<div id="s-nav"></div>
+<div id="s-cafes"></div>
+<div id="s-contacto"></div>
+<div id="modals"></div>
+
+<script src="sections/nav.js"></script>
+<script src="sections/cafes.js"></script>
+<script src="sections/contacto.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>

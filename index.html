@@ -1,68 +1,315 @@
 <!DOCTYPE html>
 <!--
-╔══════════════════════════════════════════════════════════════════╗
-║  NEIRA YORK COFFEE — index.html  (no editar este archivo)        ║
-║                                                                  ║
-║  ESTRUCTURA:                                                     ║
-║  ├── index.html              ← esqueleto (este archivo)          ║
-║  ├── .nojekyll               ← requerido GitHub Pages            ║
-║  ├── assets/                                                     ║
-║  │   ├── css/global.css      ← estilos compartidos               ║
-║  │   ├── js/app.js           ← lógica global                     ║
-║  │   └── img/                                                    ║
-║  │       ├── logo.png        ← logo oficial                      ║
-║  │       ├── landing-cafes.jpg   ← foto panel izquierdo          ║
-║  │       ├── landing-campo.jpg   ← foto panel derecho            ║
-║  │       └── cafes/          ← fotos de cada café                ║
-║  │           ├── blend-neira-york.jpg                            ║
-║  │           ├── bourbon-rojo.jpg                                ║
-║  │           └── ...                                             ║
-║  └── sections/                                                   ║
-║      ├── nav.js              ← navegación                        ║
-║      ├── landing.js          ← entrada dividida (2 paneles)      ║
-║      ├── cafes.js            ← sección Nuestros Cafés            ║
-║      ├── servicios.js        ← Para Caficultores y Emprendedores ║
-║      ├── quienes.js          ← quiénes somos                     ║
-║      ├── clientes.js         ← clientes y aliados                ║
-║      └── contacto.js         ← footer                            ║
-╚══════════════════════════════════════════════════════════════════╝
+  NEIRA YORK COFFEE — index.html
+  Página de entrada. Solo muestra las dos opciones principales.
+  Al dar clic en una opción abre cafes.html o servicios.html
 -->
 <html lang="es">
 <head>
   <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Neira York Coffee | Café Especial Colombiano</title>
   <meta name="description" content="Café especial del Eje Cafetero. Tienda online y servicios para caficultores y emprendedores."/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/global.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
   <style>
-    #loader{position:fixed;inset:0;background:#fff;z-index:9999;display:flex;align-items:center;justify-content:center;transition:opacity .5s}
-    #loader.done{opacity:0;pointer-events:none}
-    .loader-ring{width:38px;height:38px;border:3px solid #EDE8E0;border-top-color:#C8102E;border-radius:50%;animation:spin .8s linear infinite}
-    @keyframes spin{to{transform:rotate(360deg)}}
+    /* ── Reset ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: #0D1B3E;
+      color: #fff;
+      overflow: hidden;
+    }
+    @media(max-width:768px){ body{ overflow-y: auto; } }
+
+    /* ── Fondo ── */
+    .bg {
+      position: fixed; inset: 0; z-index: 0;
+      /* IMAGEN DE FONDO → sube tu foto a assets/img/landing-bg.jpg */
+      background:
+        linear-gradient(160deg, rgba(13,27,62,.82) 0%, rgba(13,27,62,.65) 100%),
+        url('assets/img/landing-bg.jpg') center/cover no-repeat;
+      background-color: #0D1B3E; /* fallback si no hay imagen */
+    }
+    /* Patrón sutil sobre el fondo */
+    .bg::after {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: radial-gradient(rgba(200,16,46,.08) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+
+    /* ── Layout ── */
+    .page {
+      position: relative; z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── Navbar mínima ── */
+    .nav {
+      padding: 1.5rem 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo { height: 48px; width: auto; }
+    .nav-contact {
+      font-size: .75rem; font-weight: 500; letter-spacing: .12em;
+      text-transform: uppercase; color: rgba(255,255,255,.6);
+      border-bottom: 1px solid rgba(255,255,255,.3);
+      padding-bottom: 2px;
+      transition: color .2s, border-color .2s;
+      text-decoration: none;
+    }
+    .nav-contact:hover { color: #fff; border-color: #C8102E; }
+
+    /* ── Centro ── */
+    .center {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 2.5rem 3rem;
+      text-align: center;
+    }
+
+    /* Logo grande */
+    .hero-logo {
+      height: 130px; width: auto;
+      margin-bottom: 1.5rem;
+      animation: fadeDown .8s ease both;
+    }
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-16px); }
+      to   { opacity: 1; transform: none; }
+    }
+
+    /* Tagline */
+    .tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+      font-style: italic;
+      color: rgba(255,255,255,.65);
+      letter-spacing: .04em;
+      margin-bottom: .5rem;
+      animation: fadeUp .8s .2s ease both;
+    }
+    .sub-tagline {
+      font-size: .72rem; font-weight: 500; letter-spacing: .22em;
+      text-transform: uppercase; color: #C8102E;
+      margin-bottom: 3rem;
+      animation: fadeUp .8s .35s ease both;
+    }
+
+    /* ── Dos tarjetas de opción ── */
+    .options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      width: 100%;
+      max-width: 860px;
+      animation: fadeUp .8s .5s ease both;
+    }
+
+    .option-card {
+      position: relative;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+      backdrop-filter: blur(12px);
+      padding: 2.5rem 2rem;
+      text-align: left;
+      text-decoration: none;
+      color: #fff;
+      transition: all .3s ease;
+      overflow: hidden;
+      cursor: pointer;
+      display: block;
+    }
+    .option-card::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(200,16,46,.12), transparent 60%);
+      opacity: 0;
+      transition: opacity .3s;
+    }
+    .option-card:hover {
+      background: rgba(255,255,255,.1);
+      border-color: rgba(200,16,46,.5);
+      transform: translateY(-3px);
+      box-shadow: 0 20px 60px rgba(0,0,0,.35);
+    }
+    .option-card:hover::before { opacity: 1; }
+
+    /* Número decorativo */
+    .option-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 5rem; font-weight: 300;
+      line-height: 1;
+      color: rgba(255,255,255,.08);
+      position: absolute; top: 1rem; right: 1.5rem;
+      transition: color .3s;
+      user-select: none;
+    }
+    .option-card:hover .option-num { color: rgba(200,16,46,.15); }
+
+    /* Línea roja superior */
+    .option-line {
+      width: 32px; height: 2px;
+      background: #C8102E;
+      margin-bottom: 1.25rem;
+      transition: width .3s;
+    }
+    .option-card:hover .option-line { width: 48px; }
+
+    .option-title {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1.25rem; font-weight: 500;
+      letter-spacing: .04em;
+      color: #fff;
+      margin-bottom: .6rem;
+      line-height: 1.25;
+    }
+    .option-title strong {
+      display: block;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem; font-weight: 400;
+      font-style: italic;
+      color: rgba(255,255,255,.85);
+      line-height: 1;
+      margin-top: 2px;
+    }
+    .option-desc {
+      font-size: .85rem;
+      color: rgba(255,255,255,.5);
+      line-height: 1.65;
+      margin-bottom: 1.75rem;
+    }
+    .option-cta {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: .75rem; font-weight: 500; letter-spacing: .12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.7);
+      border-bottom: 1px solid rgba(255,255,255,.25);
+      padding-bottom: 2px;
+      transition: color .25s, gap .25s, border-color .25s;
+    }
+    .option-card:hover .option-cta {
+      color: #fff;
+      border-color: #C8102E;
+      gap: 12px;
+    }
+    .option-arrow { transition: transform .25s; }
+    .option-card:hover .option-arrow { transform: translateX(3px); }
+
+    /* Diferencia visual entre las dos opciones */
+    .option-cafes .option-num { color: rgba(200,16,46,.12); }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: none; }
+    }
+
+    /* ── Footer mínimo ── */
+    .foot {
+      text-align: center;
+      padding: 1.2rem;
+      font-size: .62rem; font-weight: 500; letter-spacing: .15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.2);
+    }
+
+    /* ── Responsive ── */
+    @media(max-width: 640px) {
+      body { overflow-y: auto; }
+      .bg { position: fixed; }
+      .options { grid-template-columns: 1fr; max-width: 420px; }
+      .hero-logo { height: 90px; }
+      .nav { padding: 1.2rem 1.5rem; }
+      .center { padding: 1.5rem 1.5rem 2rem; }
+    }
+    @media(max-width: 400px) {
+      .option-card { padding: 2rem 1.5rem; }
+    }
   </style>
 </head>
 <body>
-<div id="loader"><div class="loader-ring"></div></div>
 
-<div id="s-nav"></div>
-<div id="s-landing"></div>
-<div id="s-cafes"></div>
-<div id="s-servicios"></div>
-<div id="s-quienes"></div>
-<div id="s-clientes"></div>
-<div id="s-contacto"></div>
-<div id="modals"></div>
+<div class="bg"></div>
 
-<script src="sections/nav.js"></script>
-<script src="sections/landing.js"></script>
-<script src="sections/cafes.js"></script>
-<script src="sections/servicios.js"></script>
-<script src="sections/quienes.js"></script>
-<script src="sections/clientes.js"></script>
-<script src="sections/contacto.js"></script>
-<script src="assets/js/app.js"></script>
+<div class="page">
+
+  <!-- Navbar mínima -->
+  <nav class="nav">
+    <img class="nav-logo" src="assets/img/logo-navy.png" alt="Neira York Coffee"/>
+    <a class="nav-contact"
+       href="https://wa.me/573137663905?text=Hola%20Neira%20York%20Coffee!"
+       target="_blank" rel="noopener">
+      Contáctanos
+    </a>
+  </nav>
+
+  <!-- Centro -->
+  <div class="center">
+
+    <!-- Logo grande central -->
+    <!-- IMAGEN → assets/img/logo-white.png (versión sobre fondo oscuro) -->
+    <img class="hero-logo" src="assets/img/logo-white.png" alt="Neira York Coffee"/>
+
+    <p class="tagline">Del corazón del Eje Cafetero a tu mesa</p>
+    <p class="sub-tagline">Neira · Caldas · Colombia · Desde 2021</p>
+
+    <!-- Las dos opciones -->
+    <div class="options">
+
+      <!-- Opción 1: Nuestros Cafés -->
+      <a class="option-card option-cafes" href="cafes.html">
+        <div class="option-num">01</div>
+        <div class="option-line"></div>
+        <div class="option-title">
+          Tienda online
+          <strong>Nuestros Cafés</strong>
+        </div>
+        <p class="option-desc">
+          Más de 16 variedades de café especial seleccionadas del Eje Cafetero.
+          Geisha, Bourbon, Exótico NYC y más — con despachos a todo Colombia.
+        </p>
+        <span class="option-cta">
+          Ver catálogo
+          <span class="option-arrow">→</span>
+        </span>
+      </a>
+
+      <!-- Opción 2: Para Caficultores y Emprendedores -->
+      <a class="option-card" href="servicios.html">
+        <div class="option-num">02</div>
+        <div class="option-line"></div>
+        <div class="option-title">
+          Servicios especializados
+          <strong>Para Caficultores<br>y Emprendedores</strong>
+        </div>
+        <p class="option-desc">
+          Laboratorio, maquila, consultoría, cursos y exportación.
+          20 años de experiencia al servicio de tu café y tu negocio.
+        </p>
+        <span class="option-cta">
+          Ver servicios
+          <span class="option-arrow">→</span>
+        </span>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- Footer mínimo -->
+  <div class="foot">© 2025 Neira York Coffee S.A.S. — Neira, Caldas, Colombia</div>
+
+</div>
+
 </body>
 </html>
