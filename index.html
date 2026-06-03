@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<!--
+╔══════════════════════════════════════════════════════════════════╗
+║  NEIRA YORK COFFEE — index.html  (no editar este archivo)        ║
+║                                                                  ║
+║  ESTRUCTURA:                                                     ║
+║  ├── index.html              ← esqueleto (este archivo)          ║
+║  ├── .nojekyll               ← requerido GitHub Pages            ║
+║  ├── assets/                                                     ║
+║  │   ├── css/global.css      ← estilos compartidos               ║
+║  │   ├── js/app.js           ← lógica global                     ║
+║  │   └── img/                                                    ║
+║  │       ├── logo.png        ← logo oficial                      ║
+║  │       ├── landing-cafes.jpg   ← foto panel izquierdo          ║
+║  │       ├── landing-campo.jpg   ← foto panel derecho            ║
+║  │       └── cafes/          ← fotos de cada café                ║
+║  │           ├── blend-neira-york.jpg                            ║
+║  │           ├── bourbon-rojo.jpg                                ║
+║  │           └── ...                                             ║
+║  └── sections/                                                   ║
+║      ├── nav.js              ← navegación                        ║
+║      ├── landing.js          ← entrada dividida (2 paneles)      ║
+║      ├── cafes.js            ← sección Nuestros Cafés            ║
+║      ├── servicios.js        ← Para Caficultores y Emprendedores ║
+║      ├── quienes.js          ← quiénes somos                     ║
+║      ├── clientes.js         ← clientes y aliados                ║
+║      └── contacto.js         ← footer                            ║
+╚══════════════════════════════════════════════════════════════════╝
+-->
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Neira York Coffee | Café Especial Colombiano</title>
+  <meta name="description" content="Café especial del Eje Cafetero. Tienda online y servicios para caficultores y emprendedores."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/global.css"/>
+  <style>
+    #loader{position:fixed;inset:0;background:#fff;z-index:9999;display:flex;align-items:center;justify-content:center;transition:opacity .5s}
+    #loader.done{opacity:0;pointer-events:none}
+    .loader-ring{width:38px;height:38px;border:3px solid #EDE8E0;border-top-color:#C8102E;border-radius:50%;animation:spin .8s linear infinite}
+    @keyframes spin{to{transform:rotate(360deg)}}
+  </style>
+</head>
+<body>
+<div id="loader"><div class="loader-ring"></div></div>
+
+<div id="s-nav"></div>
+<div id="s-landing"></div>
+<div id="s-cafes"></div>
+<div id="s-servicios"></div>
+<div id="s-quienes"></div>
+<div id="s-clientes"></div>
+<div id="s-contacto"></div>
+<div id="modals"></div>
+
+<script src="sections/nav.js"></script>
+<script src="sections/landing.js"></script>
+<script src="sections/cafes.js"></script>
+<script src="sections/servicios.js"></script>
+<script src="sections/quienes.js"></script>
+<script src="sections/clientes.js"></script>
+<script src="sections/contacto.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>
