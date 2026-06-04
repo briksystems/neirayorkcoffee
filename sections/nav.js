@@ -74,7 +74,7 @@ document.getElementById('s-nav').innerHTML = `
     <!-- Logo (cambia según el fondo) -->
     <a href="index.html" class="nav-logo">
       <img class="nav-logo-img logo-dark"  src="assets/img/logo-navy.png"  alt="Neira York Coffee"/>
-      <img class="nav-logo-img logo-light" src="assets/img/logo-white.png" alt="Neira York Coffee"/>
+      <img class="nav-logo-img logo-light" src="assets/img/logo-transparent.svg" alt="Neira York Coffee"/>
     </a>
 
     <!-- Menú de navegación -->
