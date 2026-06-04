@@ -1,9 +1,4 @@
 <!DOCTYPE html>
-<!--
-  NEIRA YORK COFFEE — index.html
-  Página de entrada. Solo muestra las dos opciones principales.
-  Al dar clic en una opción abre cafes.html o servicios.html
--->
 <html lang="es">
 <head>
   <meta charset="utf-8"/>
@@ -14,35 +9,33 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
   <style>
-    /* ── Reset ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html, body { height: 100%; }
     body {
       font-family: 'DM Sans', sans-serif;
       background: #0D1B3E;
       color: #fff;
-      overflow: hidden;
     }
-    @media(max-width:768px){ body{ overflow-y: auto; } }
 
-    /* ── Fondo ── */
+    /* ── FONDO FOTO A PANTALLA COMPLETA ── */
     .bg {
       position: fixed; inset: 0; z-index: 0;
-      /* IMAGEN DE FONDO → sube tu foto a assets/img/landing-bg.jpg */
       background:
-        linear-gradient(160deg, rgba(13,27,62,.82) 0%, rgba(13,27,62,.65) 100%),
         url('assets/img/landing-bg.jpg') center/cover no-repeat;
-      background-color: #0D1B3E; /* fallback si no hay imagen */
     }
-    /* Patrón sutil sobre el fondo */
+    /* Overlay oscuro sobre la foto para que el texto sea legible */
     .bg::after {
       content: '';
       position: absolute; inset: 0;
-      background-image: radial-gradient(rgba(200,16,46,.08) 1px, transparent 1px);
-      background-size: 40px 40px;
+      background: linear-gradient(
+        160deg,
+        rgba(8, 15, 36, 0.45) 0%,
+        rgba(8, 15, 36, 0.30) 50%,
+        rgba(8, 15, 36, 0.45) 100%
+      );
     }
 
-    /* ── Layout ── */
+    /* ── LAYOUT ── */
     .page {
       position: relative; z-index: 1;
       min-height: 100vh;
@@ -50,17 +43,52 @@
       flex-direction: column;
     }
 
-    /* ── Navbar mínima ── */
+    /* ── NAVBAR ── */
     .nav {
-      padding: 1.5rem 2.5rem;
+      padding: 1.5rem 3rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
-    .nav-logo { height: 48px; width: auto; }
+
+    /* Logo SVG — sin fondo, escala perfecta */
+    .nav-logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+    .nav-logo-wrap svg {
+      height: 52px;
+      width: auto;
+    }
+    .nav-logo-txt {
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+    }
+    .nav-logo-txt .n1 {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 500;
+      letter-spacing: .12em;
+      color: #fff;
+    }
+    .nav-logo-txt .n2 {
+      font-size: .6rem;
+      font-weight: 400;
+      letter-spacing: .35em;
+      color: #C8102E;
+      text-transform: lowercase;
+      margin-top: 2px;
+    }
+
     .nav-contact {
-      font-size: .75rem; font-weight: 500; letter-spacing: .12em;
-      text-transform: uppercase; color: rgba(255,255,255,.6);
+      font-size: .75rem;
+      font-weight: 500;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.65);
       border-bottom: 1px solid rgba(255,255,255,.3);
       padding-bottom: 2px;
       transition: color .2s, border-color .2s;
@@ -68,173 +96,198 @@
     }
     .nav-contact:hover { color: #fff; border-color: #C8102E; }
 
-    /* ── Centro ── */
+    /* ── CENTRO ── */
     .center {
       flex: 1;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 2rem 2.5rem 3rem;
+      padding: 1rem 3rem 3rem;
       text-align: center;
     }
 
-    /* Logo grande */
+    /* Logo grande central */
     .hero-logo {
-      height: 130px; width: auto;
+      display: flex;
+      align-items: center;
+      gap: 16px;
       margin-bottom: 1.5rem;
       animation: fadeDown .8s ease both;
     }
-    @keyframes fadeDown {
-      from { opacity: 0; transform: translateY(-16px); }
-      to   { opacity: 1; transform: none; }
+    .hero-logo svg { height: 90px; width: auto; }
+    .hero-logo-txt {
+      text-align: left;
+    }
+    .hero-logo-txt .big {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 500;
+      letter-spacing: .12em;
+      color: #fff;
+      line-height: 1;
+    }
+    .hero-logo-txt .small {
+      font-size: .75rem;
+      letter-spacing: .45em;
+      color: #C8102E;
+      margin-top: 4px;
     }
 
-    /* Tagline */
     .tagline {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+      font-size: clamp(1.1rem, 2.5vw, 1.55rem);
       font-style: italic;
-      color: rgba(255,255,255,.65);
-      letter-spacing: .04em;
+      color: rgba(255,255,255,.7);
       margin-bottom: .5rem;
       animation: fadeUp .8s .2s ease both;
     }
     .sub-tagline {
-      font-size: .72rem; font-weight: 500; letter-spacing: .22em;
-      text-transform: uppercase; color: #C8102E;
-      margin-bottom: 3rem;
+      font-size: .7rem;
+      font-weight: 500;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: #C8102E;
+      margin-bottom: 3.5rem;
       animation: fadeUp .8s .35s ease both;
     }
 
-    /* ── Dos tarjetas de opción ── */
+    /* ── TARJETAS — más grandes ── */
     .options {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 1.25rem;
+      gap: 1.5rem;
       width: 100%;
-      max-width: 860px;
+      max-width: 1000px;
       animation: fadeUp .8s .5s ease both;
     }
 
     .option-card {
       position: relative;
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(255,255,255,.12);
-      backdrop-filter: blur(12px);
-      padding: 2.5rem 2rem;
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.14);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      padding: 3rem 2.5rem;
       text-align: left;
       text-decoration: none;
       color: #fff;
-      transition: all .3s ease;
+      transition: all .32s ease;
       overflow: hidden;
-      cursor: pointer;
       display: block;
     }
     .option-card::before {
       content: '';
       position: absolute; inset: 0;
-      background: linear-gradient(135deg, rgba(200,16,46,.12), transparent 60%);
+      background: linear-gradient(135deg, rgba(200,16,46,.1), transparent 55%);
       opacity: 0;
-      transition: opacity .3s;
+      transition: opacity .32s;
     }
     .option-card:hover {
-      background: rgba(255,255,255,.1);
+      background: rgba(255,255,255,.11);
       border-color: rgba(200,16,46,.5);
-      transform: translateY(-3px);
-      box-shadow: 0 20px 60px rgba(0,0,0,.35);
+      transform: translateY(-4px);
+      box-shadow: 0 24px 64px rgba(0,0,0,.4);
     }
     .option-card:hover::before { opacity: 1; }
 
     /* Número decorativo */
     .option-num {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 5rem; font-weight: 300;
+      font-size: 7rem;
+      font-weight: 300;
       line-height: 1;
-      color: rgba(255,255,255,.08);
-      position: absolute; top: 1rem; right: 1.5rem;
-      transition: color .3s;
+      color: rgba(255,255,255,.06);
+      position: absolute;
+      top: 1rem; right: 1.5rem;
+      transition: color .32s;
       user-select: none;
+      pointer-events: none;
     }
-    .option-card:hover .option-num { color: rgba(200,16,46,.15); }
+    .option-card:hover .option-num { color: rgba(200,16,46,.12); }
 
-    /* Línea roja superior */
     .option-line {
-      width: 32px; height: 2px;
+      width: 36px; height: 2px;
       background: #C8102E;
-      margin-bottom: 1.25rem;
+      margin-bottom: 1.5rem;
       transition: width .3s;
     }
-    .option-card:hover .option-line { width: 48px; }
+    .option-card:hover .option-line { width: 56px; }
 
-    .option-title {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 1.25rem; font-weight: 500;
-      letter-spacing: .04em;
-      color: #fff;
-      margin-bottom: .6rem;
-      line-height: 1.25;
+    .option-label {
+      font-size: .68rem;
+      font-weight: 500;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.45);
+      margin-bottom: .5rem;
     }
-    .option-title strong {
-      display: block;
+    .option-title {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 2rem; font-weight: 400;
-      font-style: italic;
-      color: rgba(255,255,255,.85);
-      line-height: 1;
-      margin-top: 2px;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 600;
+      line-height: 1.05;
+      color: #fff;
+      margin-bottom: 1.25rem;
     }
     .option-desc {
-      font-size: .85rem;
-      color: rgba(255,255,255,.5);
-      line-height: 1.65;
-      margin-bottom: 1.75rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      color: rgba(255,255,255,.55);
+      line-height: 1.75;
+      margin-bottom: 2rem;
     }
     .option-cta {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-size: .75rem; font-weight: 500; letter-spacing: .12em;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: .75rem;
+      font-weight: 500;
+      letter-spacing: .14em;
       text-transform: uppercase;
-      color: rgba(255,255,255,.7);
-      border-bottom: 1px solid rgba(255,255,255,.25);
-      padding-bottom: 2px;
+      color: rgba(255,255,255,.75);
+      border-bottom: 1px solid rgba(255,255,255,.3);
+      padding-bottom: 3px;
       transition: color .25s, gap .25s, border-color .25s;
     }
     .option-card:hover .option-cta {
       color: #fff;
       border-color: #C8102E;
-      gap: 12px;
+      gap: 16px;
     }
-    .option-arrow { transition: transform .25s; }
-    .option-card:hover .option-arrow { transform: translateX(3px); }
+    .arrow { transition: transform .25s; }
+    .option-card:hover .arrow { transform: translateX(4px); }
 
-    /* Diferencia visual entre las dos opciones */
-    .option-cafes .option-num { color: rgba(200,16,46,.12); }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(16px); }
-      to   { opacity: 1; transform: none; }
-    }
-
-    /* ── Footer mínimo ── */
+    /* ── FOOTER ── */
     .foot {
       text-align: center;
-      padding: 1.2rem;
-      font-size: .62rem; font-weight: 500; letter-spacing: .15em;
+      padding: 1.25rem;
+      font-size: .62rem;
+      font-weight: 500;
+      letter-spacing: .15em;
       text-transform: uppercase;
       color: rgba(255,255,255,.2);
     }
 
-    /* ── Responsive ── */
-    @media(max-width: 640px) {
-      body { overflow-y: auto; }
-      .bg { position: fixed; }
-      .options { grid-template-columns: 1fr; max-width: 420px; }
-      .hero-logo { height: 90px; }
-      .nav { padding: 1.2rem 1.5rem; }
-      .center { padding: 1.5rem 1.5rem 2rem; }
+    /* ── ANIMACIONES ── */
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-14px); }
+      to   { opacity: 1; transform: none; }
     }
-    @media(max-width: 400px) {
-      .option-card { padding: 2rem 1.5rem; }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: none; }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .nav { padding: 1.2rem 1.5rem; }
+      .center { padding: 1rem 1.5rem 2rem; }
+      .options { grid-template-columns: 1fr; max-width: 480px; }
+      .hero-logo svg { height: 64px; }
+      .hero-logo-txt .big { font-size: 1.6rem; }
+      .option-card { padding: 2.2rem 1.8rem; }
+      .sub-tagline { margin-bottom: 2.5rem; }
     }
   </style>
 </head>
@@ -244,9 +297,35 @@
 
 <div class="page">
 
-  <!-- Navbar mínima -->
+  <!-- Navbar -->
   <nav class="nav">
-    <img class="nav-logo" src="assets/img/logo-navy.png" alt="Neira York Coffee"/>
+    <a href="index.html" class="nav-logo-wrap">
+      <!-- Llama SVG extraída del logo oficial — sin fondo, escala perfecta -->
+      <svg viewBox="165 0 213 330" xmlns="http://www.w3.org/2000/svg">
+        <!-- Llama roja -->
+        <path fill="#eb1f26" transform="translate(165,0)"
+          d="M 70.964844 2.625 C 80.613281 22.75 78.5625 40.605469 75.074219 64.417969
+             C 57.007812 133.609375 18 118.210938 31.960938 195.402344
+             C 12.042969 189.65625 19.847656 129.707031 3.011719 178.976562
+             C -12.589844 225.171875 57.007812 315.507812 86.363281 315.089844
+             C 77.53125 292.71875 81.640625 271.15625 85.128906 255.964844
+             C 96.835938 206.28125 131.324219 191.089844 146.105469 161.320312
+             C 192.503906 68.117188 69.324219 -13.796875 70.964844 2.625 Z"/>
+        <!-- Grano blanco -->
+        <path fill="#ffffff" transform="translate(260,89)"
+          d="M 75.40625 0.921875 C 85.875 8.519531 92.847656 13.652344 101.0625 26.785156
+             C 120.96875 58.800781 120.144531 103.132812 112.140625 135.5625
+             C 107.011719 155.679688 99.011719 176.613281 85.050781 196.320312
+             C 72.53125 213.972656 46.875 243.117188 19.167969 235.730469
+             C -4.230469 229.363281 0.695312 199.394531 2.542969 185.851562
+             C 8.082031 147.265625 51.1875 122.433594 69.449219 79.125
+             C 86.078125 39.507812 73.765625 1.746094 75.40625 0.921875 Z"/>
+      </svg>
+      <div class="nav-logo-txt">
+        <span class="n1">NEIRA YORK</span>
+        <span class="n2">c o f f e e</span>
+      </div>
+    </a>
     <a class="nav-contact"
        href="https://wa.me/573137663905?text=Hola%20Neira%20York%20Coffee!"
        target="_blank" rel="noopener">
@@ -257,9 +336,31 @@
   <!-- Centro -->
   <div class="center">
 
-    <!-- Logo grande central -->
-    <!-- IMAGEN → assets/img/logo-white.png (versión sobre fondo oscuro) -->
-    <img class="hero-logo" src="assets/img/logo-white.png" alt="Neira York Coffee"/>
+    <!-- Logo grande -->
+    <div class="hero-logo">
+      <svg viewBox="165 0 213 330" xmlns="http://www.w3.org/2000/svg">
+        <path fill="#eb1f26" transform="translate(165,0)"
+          d="M 70.964844 2.625 C 80.613281 22.75 78.5625 40.605469 75.074219 64.417969
+             C 57.007812 133.609375 18 118.210938 31.960938 195.402344
+             C 12.042969 189.65625 19.847656 129.707031 3.011719 178.976562
+             C -12.589844 225.171875 57.007812 315.507812 86.363281 315.089844
+             C 77.53125 292.71875 81.640625 271.15625 85.128906 255.964844
+             C 96.835938 206.28125 131.324219 191.089844 146.105469 161.320312
+             C 192.503906 68.117188 69.324219 -13.796875 70.964844 2.625 Z"/>
+        <path fill="#ffffff" transform="translate(260,89)"
+          d="M 75.40625 0.921875 C 85.875 8.519531 92.847656 13.652344 101.0625 26.785156
+             C 120.96875 58.800781 120.144531 103.132812 112.140625 135.5625
+             C 107.011719 155.679688 99.011719 176.613281 85.050781 196.320312
+             C 72.53125 213.972656 46.875 243.117188 19.167969 235.730469
+             C -4.230469 229.363281 0.695312 199.394531 2.542969 185.851562
+             C 8.082031 147.265625 51.1875 122.433594 69.449219 79.125
+             C 86.078125 39.507812 73.765625 1.746094 75.40625 0.921875 Z"/>
+      </svg>
+      <div class="hero-logo-txt">
+        <div class="big">NEIRA YORK</div>
+        <div class="small">c o f f e e</div>
+      </div>
+    </div>
 
     <p class="tagline">Del corazón del Eje Cafetero a tu mesa</p>
     <p class="sub-tagline">Neira · Caldas · Colombia · Desde 2021</p>
@@ -267,46 +368,37 @@
     <!-- Las dos opciones -->
     <div class="options">
 
-      <!-- Opción 1: Nuestros Cafés -->
-      <a class="option-card option-cafes" href="cafes.html">
+      <a class="option-card" href="cafes.html">
         <div class="option-num">01</div>
         <div class="option-line"></div>
-        <div class="option-title">
-          Tienda online
-          <strong>Nuestros Cafés</strong>
-        </div>
+        <div class="option-label">Tienda online</div>
+        <div class="option-title">Nuestros Cafés</div>
         <p class="option-desc">
           Más de 16 variedades de café especial seleccionadas del Eje Cafetero.
           Geisha, Bourbon, Exótico NYC y más — con despachos a todo Colombia.
         </p>
         <span class="option-cta">
-          Ver catálogo
-          <span class="option-arrow">→</span>
+          Ver catálogo <span class="arrow">→</span>
         </span>
       </a>
 
-      <!-- Opción 2: Para Caficultores y Emprendedores -->
       <a class="option-card" href="servicios.html">
         <div class="option-num">02</div>
         <div class="option-line"></div>
-        <div class="option-title">
-          Servicios especializados
-          <strong>Para Caficultores<br>y Emprendedores</strong>
-        </div>
+        <div class="option-label">Servicios especializados</div>
+        <div class="option-title">Para Caficultores<br>y Emprendedores</div>
         <p class="option-desc">
           Laboratorio, maquila, consultoría, cursos y exportación.
           20 años de experiencia al servicio de tu café y tu negocio.
         </p>
         <span class="option-cta">
-          Ver servicios
-          <span class="option-arrow">→</span>
+          Ver servicios <span class="arrow">→</span>
         </span>
       </a>
 
     </div>
   </div>
 
-  <!-- Footer mínimo -->
   <div class="foot">© 2025 Neira York Coffee S.A.S. — Neira, Caldas, Colombia</div>
 
 </div>
