@@ -10,7 +10,7 @@ document.getElementById('s-nav').innerHTML = `
 .nav-wrap{max-width:1280px;margin:0 auto;padding:0 2.5rem;height:68px;display:flex;align-items:center;justify-content:space-between}
 .nav-logo{display:flex;align-items:center;gap:0}
 .nav-logo-img{height:46px;width:auto;transition:opacity .25s}
-.logo-dark { display:block; filter: brightness(0) invert(1); }
+.logo-dark { display:block;}
 .logo-light{display:none}
 #navbar.scrolled .logo-dark{display:none}
 #navbar.scrolled .logo-light{display:block}
@@ -73,8 +73,8 @@ document.getElementById('s-nav').innerHTML = `
 
     <!-- Logo (cambia según el fondo) -->
     <a href="index.html" class="nav-logo">
-      <img class="nav-logo-img logo-dark"  src="assets/img/logo-transparent.svg"  alt="Neira York Coffee"/>
-      <img class="nav-logo-img logo-light" src="assets/img/logo-transparent.svg" alt="Neira York Coffee"/>
+      <img class="nav-logo-img logo-dark"  src="assets/img/logo-circular.svg"  alt="Neira York Coffee"/>
+      <img class="nav-logo-img logo-light" src="assets/img/logo-circular.svg" alt="Neira York Coffee"/>
     </a>
 
     <!-- Menú de navegación -->
