@@ -13,6 +13,7 @@
     html, body { height: 100%; }
     body { font-family: 'DM Sans', sans-serif; background: #0D1B3E; color: #fff; }
 
+    /* FONDO */
     .bg {
       position: fixed; inset: 0; z-index: 0;
       background: url('assets/img/landing-bg.jpg') center/cover no-repeat;
@@ -28,6 +29,7 @@
       );
     }
 
+    /* LAYOUT */
     .page {
       position: relative; z-index: 1;
       min-height: 100vh;
@@ -78,7 +80,7 @@
       text-align: center;
     }
 
-    /* Logo central — blanco, sin marco, grande */
+    /* Logo central — colores originales, sin filtro */
     .hero-logo {
       margin-bottom: 1.75rem;
       animation: fadeDown .8s ease both;
@@ -87,8 +89,6 @@
       height: 200px;
       width: auto;
       display: block;
-      filter: brightness(0) invert(1);
-      drop-shadow: 0 4px 24px rgba(0,0,0,.5);
     }
 
     .tagline {
@@ -187,6 +187,7 @@
     .arrow { transition: transform .25s; }
     .option-card:hover .arrow { transform: translateX(4px); }
 
+    /* FOOTER */
     .foot {
       text-align: center; padding: 1.25rem;
       font-size: .62rem; font-weight: 500; letter-spacing: .15em;
@@ -229,7 +230,7 @@
 
   <div class="center">
 
-    <!-- Logo blanco, grande, sin marco -->
+    <!-- Logo con colores originales, sin ningún filtro -->
     <div class="hero-logo">
       <img src="assets/img/logo-transparent.svg" alt="Neira York Coffee"/>
     </div>
