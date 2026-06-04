@@ -44,30 +44,18 @@
       align-items: center;
       justify-content: space-between;
     }
-    .nav-inicio {
+    .nav-link {
       font-size: .75rem;
       font-weight: 500;
       letter-spacing: .2em;
       text-transform: uppercase;
-      color: rgba(255,255,255,.65);
+      color: rgba(255,255,255,.7);
       text-decoration: none;
       border-bottom: 1px solid rgba(255,255,255,.25);
       padding-bottom: 2px;
       transition: color .2s, border-color .2s;
     }
-    .nav-inicio:hover { color: #fff; border-color: #C8102E; }
-    .nav-contact {
-      font-size: .75rem;
-      font-weight: 500;
-      letter-spacing: .15em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,.65);
-      border-bottom: 1px solid rgba(255,255,255,.25);
-      padding-bottom: 2px;
-      transition: color .2s, border-color .2s;
-      text-decoration: none;
-    }
-    .nav-contact:hover { color: #fff; border-color: #C8102E; }
+    .nav-link:hover { color: #fff; border-color: #C8102E; }
 
     /* CENTRO */
     .center {
@@ -76,122 +64,133 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 1rem 3rem 3rem;
+      padding: 0 3rem 2rem;
       text-align: center;
+      gap: 1.25rem;
     }
 
-    /* Logo central — colores originales, sin filtro */
-    .hero-logo {
-      margin-bottom: 1.75rem;
-      animation: fadeDown .8s ease both;
-    }
+    /* Logo */
     .hero-logo img {
       height: 400px;
       width: auto;
       display: block;
+      animation: fadeDown .8s ease both;
     }
 
+    /* Texto debajo del logo */
+    .hero-text {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .4rem;
+      animation: fadeUp .8s .2s ease both;
+    }
     .tagline {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-size: clamp(1.3rem, 2.5vw, 1.8rem);
       font-style: italic;
-      color: rgba(255,255,255,.92);
-      text-shadow: 0 2px 12px rgba(0,0,0,.7);
-      margin-bottom: .5rem;
-      animation: fadeUp .8s .2s ease both;
+      color: rgba(255,255,255,.95);
+      text-shadow: 0 2px 16px rgba(0,0,0,.8);
     }
     .sub-tagline {
       font-size: .72rem;
       font-weight: 500;
-      letter-spacing: .22em;
+      letter-spacing: .25em;
       text-transform: uppercase;
-      color: #ffffff;
+      color: rgba(255,255,255,.75);
       text-shadow: 0 1px 8px rgba(0,0,0,.8);
-      margin-bottom: 3.5rem;
-      animation: fadeUp .8s .35s ease both;
     }
 
     /* TARJETAS */
     .options {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
+      gap: 1.25rem;
       width: 100%;
-      max-width: 1000px;
-      animation: fadeUp .8s .5s ease both;
+      max-width: 1100px;
+      animation: fadeUp .8s .4s ease both;
     }
+
     .option-card {
       position: relative;
-      background: rgba(255,255,255,.07);
-      border: 1px solid rgba(255,255,255,.14);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      padding: 3rem 2.5rem;
+      background: rgba(10, 20, 50, 0.55);
+      border: 1px solid rgba(255,255,255,.2);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      padding: 3rem 3rem 3rem;
       text-align: left;
       text-decoration: none;
       color: #fff;
       transition: all .32s ease;
-      overflow: hidden;
       display: block;
     }
-    .option-card::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: linear-gradient(135deg, rgba(200,16,46,.1), transparent 55%);
-      opacity: 0;
-      transition: opacity .32s;
-    }
     .option-card:hover {
-      background: rgba(255,255,255,.11);
-      border-color: rgba(200,16,46,.5);
+      background: rgba(10, 20, 50, 0.70);
+      border-color: rgba(200,16,46,.6);
       transform: translateY(-4px);
-      box-shadow: 0 24px 64px rgba(0,0,0,.4);
+      box-shadow: 0 24px 64px rgba(0,0,0,.5);
     }
-    .option-card:hover::before { opacity: 1; }
-    .option-num {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 7rem; font-weight: 300; line-height: 1;
-      color: rgba(255,255,255,.06);
-      position: absolute; top: 1rem; right: 1.5rem;
-      transition: color .32s; user-select: none; pointer-events: none;
-    }
-    .option-card:hover .option-num { color: rgba(200,16,46,.12); }
+
     .option-line {
-      width: 36px; height: 2px;
-      background: #C8102E; margin-bottom: 1.5rem; transition: width .3s;
+      width: 40px; height: 2px;
+      background: #C8102E;
+      margin-bottom: 1.5rem;
+      transition: width .3s;
     }
-    .option-card:hover .option-line { width: 56px; }
+    .option-card:hover .option-line { width: 64px; }
+
     .option-label {
-      font-size: .7rem; font-weight: 500; letter-spacing: .2em;
-      text-transform: uppercase; color: rgba(255,255,255,.5); margin-bottom: .5rem;
+      font-size: .72rem;
+      font-weight: 500;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.65);
+      margin-bottom: .6rem;
     }
     .option-title {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1.8rem, 3vw, 2.6rem);
-      font-weight: 600; line-height: 1.05; color: #fff; margin-bottom: 1.25rem;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 600;
+      line-height: 1.05;
+      color: #fff;
+      margin-bottom: 1.25rem;
     }
     .option-desc {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1rem; color: rgba(255,255,255,.6);
-      line-height: 1.75; margin-bottom: 2rem;
+      font-size: .92rem;
+      font-weight: 400;
+      color: rgba(255,255,255,.85);
+      line-height: 1.75;
+      margin-bottom: 2.5rem;
     }
     .option-cta {
-      display: inline-flex; align-items: center; gap: 10px;
-      font-size: .75rem; font-weight: 500; letter-spacing: .14em;
-      text-transform: uppercase; color: rgba(255,255,255,.8);
-      border-bottom: 1px solid rgba(255,255,255,.3);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: .78rem;
+      font-weight: 500;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: #fff;
+      border-bottom: 1.5px solid rgba(255,255,255,.5);
       padding-bottom: 3px;
-      transition: color .25s, gap .25s, border-color .25s;
+      transition: gap .25s, border-color .25s;
     }
-    .option-card:hover .option-cta { color: #fff; border-color: #C8102E; gap: 16px; }
+    .option-card:hover .option-cta {
+      border-color: #C8102E;
+      gap: 16px;
+    }
     .arrow { transition: transform .25s; }
     .option-card:hover .arrow { transform: translateX(4px); }
 
     /* FOOTER */
     .foot {
-      text-align: center; padding: 1.25rem;
-      font-size: .62rem; font-weight: 500; letter-spacing: .15em;
-      text-transform: uppercase; color: rgba(255,255,255,.25);
+      text-align: center;
+      padding: 1.25rem;
+      font-size: .62rem;
+      font-weight: 500;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.3);
     }
 
     @keyframes fadeDown {
@@ -205,11 +204,10 @@
 
     @media (max-width: 768px) {
       .nav { padding: 1.2rem 1.5rem; }
-      .center { padding: 1rem 1.5rem 2rem; }
-      .options { grid-template-columns: 1fr; max-width: 480px; }
-      .hero-logo img { height: 140px; }
-      .option-card { padding: 2.2rem 1.8rem; }
-      .sub-tagline { margin-bottom: 2.5rem; }
+      .center { padding: 0 1.5rem 2rem; }
+      .options { grid-template-columns: 1fr; }
+      .hero-logo img { height: 260px; }
+      .option-card { padding: 2.5rem 2rem; }
     }
   </style>
 </head>
@@ -220,28 +218,27 @@
 <div class="page">
 
   <nav class="nav">
-    <a href="index.html" class="nav-inicio">Inicio</a>
-    <a class="nav-contact"
-       href="https://wa.me/573137663905?text=Hola%20Neira%20York%20Coffee!"
-       target="_blank" rel="noopener">
+    <a href="index.html" class="nav-link">Inicio</a>
+    <a href="https://wa.me/573137663905?text=Hola%20Neira%20York%20Coffee!"
+       target="_blank" rel="noopener" class="nav-link">
       Contáctanos
     </a>
   </nav>
 
   <div class="center">
 
-    <!-- Logo con colores originales, sin ningún filtro -->
     <div class="hero-logo">
       <img src="assets/img/logo-transparent.svg" alt="Neira York Coffee"/>
     </div>
 
-    <p class="tagline">Del corazón del Eje Cafetero a tu mesa</p>
-    <p class="sub-tagline">Neira · Caldas · Colombia · Desde 2021</p>
+    <div class="hero-text">
+      <p class="tagline">Del corazón del Eje Cafetero a tu mesa</p>
+      <p class="sub-tagline">Neira · Caldas · Colombia · Desde 2021</p>
+    </div>
 
     <div class="options">
 
       <a class="option-card" href="cafes.html">
-        <div class="option-num">01</div>
         <div class="option-line"></div>
         <div class="option-label">Tienda online</div>
         <div class="option-title">Nuestros Cafés</div>
@@ -253,7 +250,6 @@
       </a>
 
       <a class="option-card" href="servicios.html">
-        <div class="option-num">02</div>
         <div class="option-line"></div>
         <div class="option-label">Servicios especializados</div>
         <div class="option-title">Para Caficultores<br>y Emprendedores</div>
