@@ -2,7 +2,7 @@
 (function(){
 document.getElementById('s-contacto').innerHTML = `
 <style>
-#contacto{background:var(--navy);padding:5rem 0 0}
+#contacto{background:var(--navy);padding:5rem 0 0;position:relative;z-index:2;}
 .ft-grid{display:grid;grid-template-columns:1.8fr 1fr 1fr;gap:4rem;padding-bottom:4rem;border-bottom:1px solid rgba(255,255,255,.08)}
 .ft-logo-img{height:60px;width:auto;margin-bottom:.75rem}
 .ft-desc{font-size:.87rem;line-height:1.75;color:rgba(255,255,255,.5);margin:0 0 1.5rem;max-width:280px}
@@ -39,7 +39,7 @@ document.getElementById('s-contacto').innerHTML = `
         <div class="ft-socials">
           <a href="https://www.instagram.com/cafetintero"     target="_blank" rel="noopener" class="ft-soc">IG</a>
           <a href="https://www.instagram.com/neirayorkcoffee" target="_blank" rel="noopener" class="ft-soc">IG</a>
-          <a href="https://wa.me/573137663905"                target="_blank" rel="noopener" class="ft-soc">WA</a>
+          <a href="https://wa.me/573205224531                target="_blank" rel="noopener" class="ft-soc">WA</a>
         </div>
       </div>
 
